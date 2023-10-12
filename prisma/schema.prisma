@@ -35,7 +35,7 @@ model Server {
   updatedAt DateTime @updatedAt
   
   members Member[]
-
+  servers Channel[]
 }
 
 enum MemberRole {
@@ -73,8 +73,12 @@ model Channel {
   profileId String
   profile Profile @relation(fields: [profileId],references: [id], onDelete: Cascade)
   @@index([profileId])
+
   serverId String
   server Server @relation(fields: [serverId],references: [id], onDelete: Cascade)
-  @@index([serverIdId])
+  @@index([serverId])
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
 }
