@@ -1,13 +1,14 @@
 import Image from 'next/image'
 
 import { UserButton } from "@clerk/nextjs";
+import { ModeToggle } from '@/components/mode-toggle';
 
 
 export default function Home() {
   return (
-    <div className="flex flex-col">
-      <UserButton/>
-    this is a protected route
+    <div>
+      <UserButton afterSignOutUrl="/"/>
+      <ModeToggle/>
 
 
 
