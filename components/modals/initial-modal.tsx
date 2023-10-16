@@ -1,5 +1,9 @@
 "use client"
 
+import { useForm } from "react-hook-form"
+//han
+import * as z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Dialog,
     DialogContent,
     DialogDescription,
@@ -7,10 +11,20 @@ import { Dialog,
     DialogHeader,
     DialogTitle}  
     from "@/components/ui/dialog"
-    
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { zodResolver } from "@hookform/resolvers/zod";
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+
+
+
 
 const formSchema = z.object({
     name: z.string().min(1, {
@@ -30,8 +44,10 @@ export const InitialModal = () => {
 });
     //disable input if already submiting a request
     const isLoading = form.formState.isSubmitting;
-    const onSubmit
-    const i
+    const onSubmit = async (values:z.infer<typeof formSchema>) 
+    }
+
+
     
     return (
         <Dialog open>
@@ -46,7 +62,10 @@ export const InitialModal = () => {
                     Give your server a personality by giving it a name
                     </DialogDescription>
                 </DialogHeader>
-                <form></form>
+                
+                <Form {...form} className=">
+                    <Input placeholder="Server name" />
+                </Form>
             </DialogContent>
         </Dialog>
     );
