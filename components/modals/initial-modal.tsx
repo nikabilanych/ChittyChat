@@ -65,7 +65,14 @@ export const InitialModal = () => {
                     <div className="space-y-8 px-6 py-6">
                         
                         <div className="flex items-center justify-center text-center">
-                            TODO: Image upload
+                            <FormField 
+                            control={form.control}
+                            name="imageUrl"
+                            render={({field}) => (
+                                <FormItem>
+                                    <FormLabel
+                                    className="uppercase text-xs font-bold text-zinc-500
+                                    dark:text-secondary/70"/>
                         </div>
 
                         <FormField

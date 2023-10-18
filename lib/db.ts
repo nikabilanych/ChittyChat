@@ -13,8 +13,8 @@ declare global {
 };
 
 
-//prevents instantiation of multiple PrismaClient
-//https://www.prisma.io/docs/guides/database/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices
+
+
 export const db = globalThis.prisma || new PrismaClient()
 
 if (process.env.NODE_ENV !== "production") globalThis.prisma = db
