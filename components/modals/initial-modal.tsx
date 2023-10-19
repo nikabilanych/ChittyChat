@@ -25,15 +25,9 @@ import { Button } from "@/components/ui/button"
 import { FileUpload } from "@/components/file-upload";
 
 
-
-
 const formSchema = z.object({
-    name: z.string().min(1, {
-        message: "Server name is required."
-    }),
-    imageUrl: z.string().min(1,{
-        message: "Server image is required."
-}),
+    name: z.string().min(1, {message: "Server name is required."}),
+    imageUrl: z.string().min(1,{message: "Server image is required."}),
 })
 export const InitialModal = () => {
     const form = useForm({
@@ -44,7 +38,9 @@ export const InitialModal = () => {
         }
     });
     //disable input if already submiting a request
+
     const isLoading = form.formState.isSubmitting;
+    // extract the inferred type of the form values
     const onSubmit = async (values:z.infer<typeof formSchema>) => {
         console.log(values);
     }
