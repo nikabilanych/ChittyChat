@@ -1,9 +1,10 @@
 "use client"
-
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod"
 import { useState, useEffect } from "react";
+import axios from "axios";
+import {useRouter} from "next/navigation"
 import { Dialog,
     DialogContent,
     DialogDescription,
@@ -30,6 +31,14 @@ const formSchema = z.object({
     imageUrl: z.string().min(1,{message: "Server image is required."}),
 })
 export const InitialModal = () => {
+    const [isMounted, setIsMounted] = useState(false);
+
+    const router = useRouter();
+
+    useEffect(() => {
+        setIsMounted(true);
+    })
+    
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -42,8 +51,19 @@ export const InitialModal = () => {
     const isLoading = form.formState.isSubmitting;
     // extract the inferred type of the form values
     const onSubmit = async (values:z.infer<typeof formSchema>) => {
-        console.log(values);
+        try {
+            await axios.post("/api/server", values);
+            form.reset();
+            router.refresh();
+            window.location.reload();
+            
+        } catch (error) {
+            console.log(error);
+        }
     }
+    if (!isMounted) {
+        return null;
+    }   
     return (
         <Dialog open>
         <DialogContent className="bg-white text-black p-0 overflow-hidden">
