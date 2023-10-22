@@ -1,3 +1,4 @@
+//server creation API
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
@@ -11,7 +12,7 @@ import { MemberRole } from "@prisma/client";
 export async function POST(request:Request) {
     try {
         const {name,imageUrl} = await request.json();
-        
+
         const profile = await currentProfile();
         if  (!profile) {
             return new NextResponse("Unauthorized", { status: 401 });
