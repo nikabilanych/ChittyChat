@@ -7,8 +7,10 @@ import { v4 as uuidv4 } from "uuid";
 import { MemberRole } from "@prisma/client";
 
 
-
-
+// web socket instead of async functs
+// new request - > new connections
+// 1 websocket
+// 
 export async function POST(request:Request) {
     try {
         const {name,imageUrl} = await request.json();
@@ -23,7 +25,7 @@ export async function POST(request:Request) {
                 name:name,
                 imageUrl:imageUrl,
                 inviteCode:uuidv4(),
-                servers:{
+                channels:{
                     create:[
                         { name: "general", profileId: profile.id }
                     ]

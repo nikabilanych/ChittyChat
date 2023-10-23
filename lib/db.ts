@@ -1,10 +1,5 @@
 import { PrismaClient } from '@prisma/client'
 
-//initialize Prisma Client
-
-// == const PrismaSingleton=()=>{
-    //return new PrismaClient()
-// }
 
 
 declare global {
@@ -13,8 +8,10 @@ declare global {
 };
 
 
-
-
 export const db = globalThis.prisma || new PrismaClient()
 
 if (process.env.NODE_ENV !== "production") globalThis.prisma = db
+
+
+//jak se klient "drzi" databaze 
+// je to osetreno?
