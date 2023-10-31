@@ -1,4 +1,6 @@
-//server creation API
+// API for creating a server
+
+//c
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
@@ -10,7 +12,8 @@ import { MemberRole } from "@prisma/client";
 // web socket instead of async functs
 // new request - > new connections
 // 1 websocket ? ? ? 
-// testtting
+
+// async funct POST
 export async function POST(request:Request) {
     try {
         const {name,imageUrl} = await request.json();
@@ -19,6 +22,7 @@ export async function POST(request:Request) {
         if  (!profile) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
+
         const server = await db.server.create({
             data:{
                 profileId:profile.id,
@@ -37,7 +41,8 @@ export async function POST(request:Request) {
                         ]
                     }
                 }
-            })
+            });
+            return NextResponse.json(server);
     }
         catch (error) {
         console.log("[SERVERS_POST]", error);
