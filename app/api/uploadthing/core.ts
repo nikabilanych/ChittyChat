@@ -11,7 +11,7 @@ const handleAuth = () => {
 
 export const ourFileRouter = {
     //confic
-    serverImage: f({image:{maxFileSize: "4MB", maxFileCount: 1}}) 
+    serverImage: f({image:{maxFileSize: "8MB", maxFileCount: 1}}) 
     .middleware(() => handleAuth())
     .onUploadComplete(()=>{ }),// 5mb
     messageFile: f(["image","pdf"])
