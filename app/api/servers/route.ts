@@ -10,7 +10,7 @@ import { MemberRole } from "@prisma/client";
 // web socket instead of async functs
 // new request - > new connections
 // 1 websocket ? ? ? 
-// 
+// testtting
 export async function POST(request:Request) {
     try {
         const {name,imageUrl} = await request.json();
