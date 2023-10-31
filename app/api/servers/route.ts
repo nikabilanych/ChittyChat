@@ -9,7 +9,7 @@ import { MemberRole } from "@prisma/client";
 
 // web socket instead of async functs
 // new request - > new connections
-// 1 websocket
+// 1 websocket ? ? ? 
 // 
 export async function POST(request:Request) {
     try {
