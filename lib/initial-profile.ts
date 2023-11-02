@@ -8,7 +8,7 @@ import { db } from "@/lib/db";
 export const initialProfile = async () => {
 
 //Check if a user is authenticated 
-    const user = await currentUser();
+const user = await currentUser();
 //if not, redirect to sign in
     if(!user) {
         return redirectToSignIn();
